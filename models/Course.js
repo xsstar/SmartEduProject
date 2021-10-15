@@ -18,9 +18,13 @@ const CourseSchema = new Schema({
     default: Date.now,
   },
   slug: {
-    type: String,
-    unique: true,
+    type:String,
+    unique: true
   },
+  category: {
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'Category'
+  }
 });
 
 CourseSchema.pre('validate', function(next){
@@ -30,6 +34,5 @@ CourseSchema.pre('validate', function(next){
   })
   next();
 })
-
 const Course = mongoose.model('Course', CourseSchema);
 module.exports = Course;
