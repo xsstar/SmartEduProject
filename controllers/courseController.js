@@ -36,13 +36,13 @@ exports.getAllCourses = async (req, res) => {
   }
 };
 
-//for POSTMAN : verilerimiz hazır olmasa bile..
-/* exports.getAllCourses = async (req, res) => {
+exports.getCourse = async (req, res) => {
   try {
-    const courses = await Course.find();
-    res.status(201).json({
-      status: 'success',
-      courses,
+    const course = await Course.findOne({slug: req.params.slug})
+
+    res.status(200).render('course', {
+      course,
+      page_name: 'courses',
     });
   } catch (error) {
     res.status(400).json({
@@ -50,4 +50,4 @@ exports.getAllCourses = async (req, res) => {
       error,
     });
   }
-}; */
+};

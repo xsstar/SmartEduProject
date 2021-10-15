@@ -27,6 +27,7 @@ app.use(express.urlencoded({ extended: true })) // for parsing application/x-www
 app.use('/', pageRoute);
 app.use('/courses', courseRoute);
 
+
 const port = 3000;
 
 app.listen(port, () => {
