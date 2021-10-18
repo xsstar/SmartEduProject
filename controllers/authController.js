@@ -5,18 +5,14 @@ exports.createUser = async (req, res) => {
   try {
     const user = await User.create(req.body);
 
-   return res.status(201).json({
-      status: 'success',
-      user,
-    });
+    res.status(201).redirect('/login');
   } catch (error) {
-  return  res.status(400).json({
+    res.status(400).json({
       status: 'fail',
       error,
     });
   }
 };
-
 
 exports.loginUser = async (req, res) => {
   try {
@@ -41,15 +37,15 @@ exports.loginUser = async (req, res) => {
 };
 
 exports.logoutUser = (req, res) => {
-  req.session.destroy(()=> {
+  req.session.destroy(() => {
     res.redirect('/');
-  })
-}
+  });
+};
 
 exports.getDashboardPage = async (req, res) => {
-  const user = await User.findOne({_id:req.session.userID})
+  const user = await User.findOne({ _id: req.session.userID });
   res.status(200).render('dashboard', {
     page_name: 'dashboard',
-    user
+    user,
   });
 };

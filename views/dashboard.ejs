@@ -1,15 +1,23 @@
-<%- include('partials/_header.ejs'); -%>
-
-<%- include('partials/_navigation.ejs'); -%>
+<%- include('partials/_header'); %>
+<%- include('partials/_navigation'); %>
 
 <% if(user) { %> 
-	
+	<% if(user.role ==='student') { %> 
 	<div class="all-title-box">
 		<div class="container text-center">
-			<h1><%= user.name %><span class="m_1">Lorem Ipsum dolroin gravida nibh vel velit.</span></h1>
+			<h1><%= user.name %><span class="m_1">STUDENT</span></h1>
 		</div>
 	</div>
 	
+	<% } %>
+	<% if(user.role ==='teacher') { %> 
+		<div class="all-title-box">
+			<div class="container text-center">
+				<h1><%= user.name %><span class="m_1">TEACHER</span></h1>
+			</div>
+		</div>
+		
+		<% } %>
     <div id="overviews" class="section wb">
         <div class="container">
             <div class="row"> 
@@ -23,7 +31,7 @@
 							</p>
 						</div>
 						<div class="author-desc">
-							<img src="/images/author.jpg" alt="about author">
+							<img src="images/author.jpg" alt="about author">
 						</div>
 					</div>
 					
@@ -33,7 +41,7 @@
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="course-item mb-5">
 						<div class="image-blog">
-							<img src="/images/blog_1.jpg" alt="" class="img-fluid">
+							<img src="images/blog_1.jpg" alt="" class="img-fluid">
 						</div>
 						<div class="course-br">
 							<div class="course-title">
@@ -45,11 +53,10 @@
 						</div>
 					</div>
                 </div><!-- end col -->
-
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="course-item mb-5">
 						<div class="image-blog">
-							<img src="/images/blog_2.jpg" alt="" class="img-fluid">
+							<img src="images/blog_2.jpg" alt="" class="img-fluid">
 						</div>
 						<div class="course-br">
 							<div class="course-title">
@@ -64,7 +71,7 @@
 				                <div class="col-lg-6 col-md-6 col-12">
                     <div class="course-item mb-5">
 						<div class="image-blog">
-							<img src="/images/blog_2.jpg" alt="" class="img-fluid">
+							<img src="images/blog_2.jpg" alt="" class="img-fluid">
 						</div>
 						<div class="course-br">
 							<div class="course-title">
@@ -79,7 +86,7 @@
 				  <div class="col-lg-6 col-md-6 col-12">
                     <div class="course-item mb-5">
 						<div class="image-blog">
-							<img src="/images/blog_2.jpg" alt="" class="img-fluid">
+							<img src="images/blog_2.jpg" alt="" class="img-fluid">
 						</div>
 						<div class="course-br">
 							<div class="course-title">
@@ -94,7 +101,5 @@
             </div><!-- end row -->
         </div><!-- end container -->
     </div><!-- end section -->
-
-	<% } %>
-
-    <%- include('partials/_footer.ejs'); -%>
+<% } %>
+	<%- include('partials/_footer'); %>
