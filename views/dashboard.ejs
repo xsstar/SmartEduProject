@@ -36,13 +36,24 @@ if(user) { %> <% if(user.role==='student' ) { %>
               </h2>
             </div>
             <div class="course-desc">
-              <p><%= user.courses[i].description %></p>
+              <p>
+                <%= user.courses[i].description.substring(0, 20) + "..." %> %>
+              </p>
+              <form method="POST" action="/courses/release">
+                <input
+                  type="hidden"
+                  name="course_id"
+                  value="<%= user.courses[i]._id %>"
+                />
+                <button class="btn btn-lg btn-danger text-white">
+                  <span>RELEASE</span>
+                </button>
+              </form>
             </div>
           </div>
         </div>
       </div>
       <!-- end col -->
-
       <% } %>
     </div>
     <!-- end row -->
@@ -50,7 +61,6 @@ if(user) { %> <% if(user.role==='student' ) { %>
   <!-- end container -->
 </div>
 <!-- end section -->
-
 <% } %> <% if(user.role==='teacher' ) { %>
 <div class="all-title-box">
   <div class="container text-center">
@@ -97,7 +107,7 @@ if(user) { %> <% if(user.role==='student' ) { %>
               </h2>
             </div>
             <div class="course-desc">
-              <p><%= courses[i].description %></p>
+              <p><%= courses[i].description.substring(0, 20) + "..." %> %></p>
             </div>
           </div>
         </div>
