@@ -33,6 +33,8 @@ exports.getIndexPage = (req, res) => {
 
   exports.sendEmail = async (req, res) => {
 
+    try {
+      
     const outputMessage = `
     
     <h1>Mail Details </h1>
@@ -50,7 +52,7 @@ exports.getIndexPage = (req, res) => {
       secure: true, // true for 465, false for other ports
       auth: {
         user: "havvaarslann@gmail.com", // gmail account
-        pass: "psnkccexcgfcwjwv", // gmail password
+        pass: "vjahyatljtpmxwnm1111", // gmail password
       },
     });
   
@@ -68,7 +70,14 @@ exports.getIndexPage = (req, res) => {
     // Preview only available when sending through an Ethereal account
     console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
     // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
-  
+
+    req.flash("success", "We Received your message succesfully");
+
     res.status(200).redirect('contact');
+  } catch (err) {
+    // req.flash("error", `Something happened! ${err}`);
+    req.flash("error", `Something happened!`);
+    res.status(200).redirect('contact');
+  }
   
   };
