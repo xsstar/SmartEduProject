@@ -13,14 +13,15 @@ const userRoute = require('./routes/userRoute');
 const app = express();
 
 //Connect DB
-mongoose.connect('mongodb://localhost/smartedu-db', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-  useCreateIndex: true
- 
-}).then(()=> {
-  console.log('DB Connected Successfully')
+mongoose.connect('mongodb+srv://dbUser:ZG5qzv37aHzaQoNS@cluster0.l6mgp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+)
+
+.then(() => {
+
+  console.log('DB Connected Successfully');
+})
+.catch((err) => {
+  console.log(err);
 });
 
 //Template Engine
@@ -39,7 +40,7 @@ app.use(session({
   secret: 'my_keyboard_cat',
   resave: false,
   saveUninitialized: true,
-  store: MongoStore.create({ mongoUrl: 'mongodb://localhost/smartedu-db' })
+  store: MongoStore.create({ mongoUrl: 'mongodb+srv://dbUser:ZG5qzv37aHzaQoNS@cluster0.l6mgp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority' })
 }))
 app.use(flash());
 app.use((req, res, next)=> {
@@ -64,7 +65,7 @@ app.use('/categories', categoryRoute);
 app.use('/users', userRoute);
 
 
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
   console.log(`App started on port ${port} `);
